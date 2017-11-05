@@ -6,7 +6,7 @@ import java.util.Vector;
 
 
 public class KnowledgeBase {
-	private static final String archivoBaseDeDatos = "ruta del archivo";
+	private static final String archivoBaseDeDatos = "src/main/resources/rules.db";
 	private DBParser parser;
 	private QueryParser queryParser;
 
