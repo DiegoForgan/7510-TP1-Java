@@ -37,9 +37,11 @@ public class KnowledgeBase {
 		if (this.resolverHecho(queryParseada)) return true;
 
 		//Si no puede resolver el hecho, intenta resolverlo como regla
-		Regla reglaAtraducir = this.buscarRegla(queryParseada.getNombre());
+		Regla reglaEncontrada = this.buscarRegla(queryParseada.getNombre());
 
-		if (reglaAtraducir != null){
+
+		if (reglaEncontrada != null){
+			Regla reglaAtraducir = new Regla(reglaEncontrada.getNombre(),reglaEncontrada.getVariables(),reglaEncontrada.getHechos());
 			Regla reglaTraducida = this.traducirRegla(reglaAtraducir,queryParseada.getValor());
 			return this.resolverRegla(reglaTraducida);
 		}
@@ -83,5 +85,15 @@ public class KnowledgeBase {
 			}
 		}
 		return reglaAtraducir;
+	}
+
+	public void agregarInformacion(String dato) {
+		this.parser.agregarDatos(dato);
+		this.reglas = this.parser.getReglasParseadas();
+		this.hechos = this.parser.getHechosParseados();
+	}
+
+	public boolean procesarArchivo(String archivo){
+		return this.parser.parsearBaseDeDatos(archivo);
 	}
 }

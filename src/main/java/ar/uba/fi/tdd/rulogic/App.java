@@ -13,8 +13,11 @@ public class App
 	public static void main(String[] args) {
 
 		System.out.println("I shall answer all your questions!");
-		String query = "hijo(pepe, juan)";
+		String query = "varon(diego)";
 		KnowledgeBase baseDeDatos = new KnowledgeBase();
+		System.out.println("Your query for: "+ query);
+		System.out.println("results: "+ baseDeDatos.answer(query));
+		baseDeDatos.agregarInformacion("varon(diego).");
 		System.out.println("Your query for: "+ query);
 		System.out.println("results: "+ baseDeDatos.answer(query));
     }

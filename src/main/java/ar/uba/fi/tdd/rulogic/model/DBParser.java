@@ -20,7 +20,7 @@ public class DBParser extends Parser{
 
 
 
-    public void parsearBaseDeDatos (String archivo){
+    public boolean parsearBaseDeDatos (String archivo){
         String linea = null;
         try{
 
@@ -38,14 +38,17 @@ public class DBParser extends Parser{
             }
 
             bufferedReader.close();
+            return true;
         }
 
         catch(FileNotFoundException ex){
             System.out.println("No se pudo abrir el archivo "+ archivo);
+            return false;
         }
 
         catch(IOException ex){
             System.out.println("No se pudo leer el archivo!");
+            return false;
         }
 
     }
@@ -85,6 +88,11 @@ public class DBParser extends Parser{
 
     private boolean verificarEntradaDeLaBase(String linea) {
         return (this.verificarPuntoFinal(linea) && this.verificarParentesis(linea));
+    }
+
+    public void agregarDatos(String linea){
+        if (this.verificarEntradaDeLaBase(linea)) this.parsearLinea(linea);
+        else {this.correctDatabase = false;}
     }
 
     public boolean isCorrectDatabase() {
