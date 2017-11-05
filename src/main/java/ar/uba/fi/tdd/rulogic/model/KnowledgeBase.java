@@ -40,6 +40,7 @@ public class KnowledgeBase {
 		Regla reglaEncontrada = this.buscarRegla(queryParseada.getNombre());
 
 
+
 		if (reglaEncontrada != null){
 			Regla reglaAtraducir = new Regla(reglaEncontrada.getNombre(),reglaEncontrada.getVariables(),reglaEncontrada.getHechos());
 			Regla reglaTraducida = this.traducirRegla(reglaAtraducir,queryParseada.getValor());
