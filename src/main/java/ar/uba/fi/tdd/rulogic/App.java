@@ -3,6 +3,8 @@ package ar.uba.fi.tdd.rulogic;
 
 import ar.uba.fi.tdd.rulogic.model.KnowledgeBase;
 
+import java.util.Scanner;
+
 
 /**
  * Console application.
@@ -13,12 +15,17 @@ public class App
 	public static void main(String[] args) {
 
 		System.out.println("I shall answer all your questions!");
-		String query = "varon(diego)";
+		String query;
 		KnowledgeBase baseDeDatos = new KnowledgeBase();
-		System.out.println("Your query for: "+ query);
-		System.out.println("results: "+ baseDeDatos.answer(query));
-		baseDeDatos.agregarInformacion("varon(diego).");
-		System.out.println("Your query for: "+ query);
-		System.out.println("results: "+ baseDeDatos.answer(query));
-    }
+		boolean keepAsking = true;
+		Scanner in = new Scanner(System.in);
+		while (keepAsking){
+			System.out.println("Enter your query:");
+			query = in.next();
+			System.out.println(baseDeDatos.answer(query));
+			System.out.println("Do you wish to keep asking? (s/n)");
+			if (in.next().equals("s")) keepAsking = true;
+			else keepAsking = false;
+		}
+	}
 }
